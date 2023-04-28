@@ -39,4 +39,10 @@
 
   After that, open a browser window to:  http://127.0.0.1:9999
 
- 
+Open a terminal with 
+git clone https://github.com/PeterHjortLauritzen/CAM cam-mars
+cd cam-mars
+git checkout cam-mars
+./manage_externals/checkout_externals 
+cd scripts
+source baroclinic_wave.sh
