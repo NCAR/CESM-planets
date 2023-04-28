@@ -1,48 +1,46 @@
- Here are the instructions to run the CESM+Jupyter ('CESM-Lab') container - it's just a few easy steps.  There's a preliminary FAQ afterwards for common questions, too:
+ Here are the instructions to run the CESM container - it's just a few easy steps.
 
   1) Download and install Docker ( https://www.docker.com/products/docker-desktop )
 
-  2) Run 'docker pull escomp/cesm-lab-2.2' -- this gets you the CESM2.2 release w/ Jupyter integration
-
+  2) Run 'docker pull escomp/cam_mars' - this will take about 2.2GB of disk space.
+  
   3) [Optional, but recommended] Create a subdirectory to mount into the container:
 
   Mac/Linux:
-    mkdir ~/cesmlab
+    mkdir ~/cesm-dev
 
   Windows (on the C: drive):
      cd C:\
-     mkdir cesmlab
+     mkdir cesm-dev
+ 
+  4) From there, you can run it (and feel free to give a different directory than 'cesmlab' on your own system):
 
-  4) Run the container - the ‘-v’ flag is for mounting the directory above into the container.  
+  docker run -it --rm -v ${HOME}/cesm-dev:/home/user escomp/cam_mars
 
-  Mac/Linux:
+  
+  5) And from there, you should be able to do a 'git clone' of the code and it'll just work.  
+  
+  git clone https://github.com/PeterHjortLauritzen/CAM cam-mars
+  
+  cd cam-mars
+  
+  git checkout cam-mars (*)
+  
+  ./manage_externals/checkout_externals 
+  
+  cd scripts
+  
+  From a different terminal on you host machine copy the shell script from this repo's scripts directory to the cam-mars/scripts directory. e.g., 
+  cp baroclinic_wave.sh /Users/*user_name*/cesm-dev/cam-mars/scripts/baroclinic_docker.sh
+  
+  from a tcsh
+  source baroclinic_wave.sh
+  This should take you to the case directory /home/user/scratch/FADIAB_ne30_ne30_mg17
 
-   docker run -it --rm -v  ${HOME}/cesmlab:/home/user -p 8888:8888 escomp/cesm-lab-2.2
+ 6) Build the model: ./case.build 
 
-  Windows:
-   docker run -it --rm -v  C:\cesmlab:/home/user -p 8888:8888 escomp/cesm-lab-2.2
-
-
-  (Note: The ‘-n’ option is only in newer Docker versions; if you have an issue with it, just remove the ‘-n cesmlab’ section above.)
+ (*) However, before you do that, make sure you do this first, and accept the certificate permanently ('p') to fix that issue with 'checkout_externals':
+ 
+ svn ls  https://svn-ccsm-models.cgd.ucar.edu/tools/proc_atm/chem_proc/release_tags/chem_proc5_0_04
 
 
-
-  Once you do that, open a web browser and go to http://127.0.0.1:8888 - you should see the basic interface.
-
-  Here's a few common questions/issues you might run into:
-
-1) What if I'm already running Jupyter locally?
-
-  If you're already running, it might be on port 8888 (the default), so you'll need to use a different port in the 'docker run' command.  Since this is a container, you only need to change the external port, which is the first number in the set of two.  Eg, to switch from listening on port 8888 to port 9999, do:
-
-  docker run -i -n cesmlab --rm -v  ${HOME}:/home/user -p 9999:8888 escomp/cesm-lab-2.2
-
-  After that, open a browser window to:  http://127.0.0.1:9999
-
-Open a terminal with 
-git clone https://github.com/PeterHjortLauritzen/CAM cam-mars
-cd cam-mars
-git checkout cam-mars
-./manage_externals/checkout_externals 
-cd scripts
-source baroclinic_wave.sh
