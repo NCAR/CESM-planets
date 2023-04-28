@@ -34,7 +34,7 @@
   cp baroclinic_wave.sh /Users/*user_name*/cesm-dev/cam-mars/scripts/baroclinic_docker.sh
   
   from a tcsh
-  source baroclinic_wave.sh
+  source baroclinic_docker.sh
   This should take you to the case directory /home/user/scratch/FADIAB_ne30_ne30_mg17
 
  6) Build the model: ./case.build 
