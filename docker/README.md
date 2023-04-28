@@ -31,10 +31,10 @@
   cd scripts
   
   From a different terminal on you host machine copy the shell script from this repo's scripts directory to the cam-mars/scripts directory. e.g., 
-  cp baroclinic_wave.sh /Users/*user_name*/cesm-dev/cam-mars/scripts/baroclinic_docker.sh
+  cp held_suarez_mars.sh ~/cesm-dev/cam-mars/scripts
   
   from a tcsh
-  source baroclinic_docker.sh
+  source held_suarez_mars.sh
   This should take you to the case directory /home/user/scratch/FADIAB_ne30_ne30_mg17
 
  6) Build the model: ./case.build 
