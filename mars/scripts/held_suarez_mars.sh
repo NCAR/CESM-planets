@@ -57,7 +57,7 @@ echo "interpolate_nlon   = 288,288,288"             >> user_nl_cam
 echo "empty_htapes       = .true." >> user_nl_cam
 #held_suarez_1994,moist_baroclinic_wave_dcmip2016,dry_baroclinic_wave_dcmip2016,dry_baroclinic_wave_jw2006,us_standard_atmosphere
 if ($analytic == "T") then
-  echo "ncdata = '/glade/u/home/pel/src/cam-mars/scripts/Mars_ne16_ne16_mg17_L49.cam.i.0001-04-01-00000.nc'" >> user_nl_cam
+  echo "ncdata = '/home/user/cam-mars/scripts/Mars_ne16_ne16_mg17_L49.cam.i.0001-04-01-00000.nc'" >> user_nl_cam
   echo "analytic_ic_type='us_standard_atmosphere'" >> user_nl_cam
   echo "se_nsplit = 100"
   echo "se_rsplit = 1"  >> user_nl_cam
