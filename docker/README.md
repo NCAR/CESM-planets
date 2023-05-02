@@ -13,7 +13,7 @@
      cd C:\
      mkdir cesm-dev
  
-  4) From there, you can run it (and feel free to give a different directory than 'cesmlab' on your own system):
+  4) From there, you can run it (and feel free to give a different directory than 'cesm-dev' on your own system):
 
   docker run -it --rm -v ${HOME}/cesm-dev:/home/user escomp/cam_mars
 
