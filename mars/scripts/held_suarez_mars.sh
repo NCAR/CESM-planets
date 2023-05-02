@@ -52,8 +52,8 @@ else
   echo "inithist          =  'MONTHLY'" >> user_nl_cam
 endif
 echo "interpolate_output = .true.,.true.,.true."    >> user_nl_cam
-echo "interpolate_nlat   = 192,192,192"             >> user_nl_cam
-echo "interpolate_nlon   = 288,288,288"             >> user_nl_cam
+echo "interpolate_nlat   = 96,96,96"             >> user_nl_cam
+echo "interpolate_nlon   = 144,144,144"             >> user_nl_cam
 echo "empty_htapes       = .true." >> user_nl_cam
 #held_suarez_1994,moist_baroclinic_wave_dcmip2016,dry_baroclinic_wave_dcmip2016,dry_baroclinic_wave_jw2006,us_standard_atmosphere
 if ($analytic == "T") then
