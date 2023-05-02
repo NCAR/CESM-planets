@@ -13,7 +13,7 @@
      cd C:\
      mkdir cesm-dev
  
-  4) From there, you can run it (and feel free to give a different directory than 'cesmlab' on your own system):
+  4) From there, you can run it (and feel free to give a different directory than 'cesm-dev' on your own system):
 
   docker run -it --rm -v ${HOME}/cesm-dev:/home/user escomp/cam_mars
 
@@ -35,7 +35,7 @@
   
   from a tcsh
   source held_suarez_mars.sh
-  This should take you to the case directory /home/user/scratch/FADIAB_ne30_ne30_mg17
+  This should take you to the case directory /home/user/scratch/Mars_ne16_ne16_mg17_L49
 
  6) Build the model: ./case.build 
 
