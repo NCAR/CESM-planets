@@ -4,8 +4,9 @@ set analytic="F"
 #set res = ne30_ne30_mg17
 set res=ne16_ne16_mg17
 #
-# source code (assumed to be in /glade/u/home/$USER/src)
-#
+# source code (assumed to be in /glade/u/home/$USER/src) --> BPM changed
+set home=/glade/u/home
+set srcloc=/glade/work/$USER/MARS
 set src="cam-mars"
 if ($short == "T") then
   set stopoption="ndays"
@@ -24,10 +25,10 @@ set queue="regular"
 set PBS_ACCOUNT="P93300642"
 echo $PBS_ACCOUNT
 # set scratch="/glade/scratch"
-set scratch="/home/user/scratch/"
+set scratch=$home/$USER/scratch/
 
 
-/home/user/$src/cime/scripts/create_newcase --case $scratch/$USER/$caze --compset $cset --res $res  --q $queue --walltime $wall --pecount $pecount  --project $PBS_ACCOUNT --run-unsupported
+$srcloc/$src/cime/scripts/create_newcase --case $scratch/$USER/$caze --compset $cset --res $res  --q $queue --walltime $wall --pecount $pecount  --project $PBS_ACCOUNT --run-unsupported
 
 cd $scratch/$USER/$caze
 ./xmlchange STOP_OPTION=$stopoption,STOP_N=$steps
