@@ -1,0 +1,10 @@
+How the topography file was generated:
+
+1. Follow instructions on downloading and compiling the NCAR Global Model 
+   Topography Generation Software for Unstructured Grids here:
+
+   https://github.com/NCAR/Topo/wiki/User's-Guide
+
+2. Command executed on NCAR Cheyenne to generate topography file for 2 degree model:
+
+./cube_to_target --smoothing_over_ocean --no_ridges --grid_descriptor_file='/glade/p/cesmdata/cseg/inputdata/share/meshes/ne16np4_ESMFmesh_cdf5_c20211018.nc' --intermediate_cs_name='/glade/p/cgd/amp/pel/topo/cubedata/mars-ncube3000.nc' --output_grid='mars_ne16np4' --smoothing_scale=200.0 -u 'Peter Hjort Lauritzen, pel@ucar.edu' -q 'output/'
