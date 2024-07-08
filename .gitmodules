@@ -64,9 +64,9 @@
 
 [submodule "cam"]
 	path = components/cam
-	url = https://www.github.com/ESCOMP/CAM
-	fxDONOTUSEurl = https://www.github.com/ESCOMP/CAM
-        fxtag = cam6_3_162
+	url = https://github.com/PeterHjortLauritzen/CAM
+	fxDONOTUSEurl = https://github.com/PeterHjortLauritzen/CAM
+        fxtag = cam-mars-dev_001
         fxrequired = ToplevelRequired
 
 [submodule "ww3"]
@@ -159,3 +159,11 @@
 	fxDONOTUSEurl = https://github.com/ESCOMP/MOM_interface
         fxrequired = ToplevelRequired
         fxtag = mi_240522
+
+[submodule "socrates_int"]
+	path = libraries/SOCRATES
+	url = https://github.com/ESCOMP/SOCRATES_interface
+	fxDONOTUSEurl = https://github.com/ESCOMP/SOCRATES_interface
+        fxrequired = ToplevelRequired
+        fxtag = socrates_int_001
+
