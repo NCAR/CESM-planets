@@ -3,24 +3,24 @@ set short="F"
 set analytic="F"
 #set res = ne30_ne30_mg17
 set res=ne16_ne16_mg17
+set cset="FMARSHS94"
 #
 # source code (assumed to be in /glade/u/home/$USER/src) --> BPM changed
 set home=/glade/u/home
 #set srcloc=/glade/work/$USER/MARS
-set srcloc=/glade/derecho/scratch/pel/
+set srcloc=/glade/derecho/scratch/pel
 set src="CESM-planets"
 if ($short == "T") then
   set stopoption="ndays"
   set steps="1"
   set wall="00:05:00"
-  set caze=Mars_${res}_L49_short
+  set caze=${cset}_${res}_L49_short
 else
   set stopoption="nmonths"
   set steps="12"
   set wall="00:40:00"
-  set caze=Mars_${res}_L49
+  set caze=${cset}_${res}_L49
 endif
-set cset="FHS94"
 set pecount="225"
 #set queue="regular"
 set PBS_ACCOUNT="P93300642"
@@ -56,9 +56,9 @@ echo "interpolate_output = .true.,.true.,.true."    >> user_nl_cam
 echo "interpolate_nlat   = 96,96,96"             >> user_nl_cam
 echo "interpolate_nlon   = 144,144,144"             >> user_nl_cam
 echo "empty_htapes       = .true." >> user_nl_cam
-#held_suarez_1994,moist_baroclinic_wave_dcmip2016,dry_baroclinic_wave_dcmip2016,dry_baroclinic_wave_jw2006,us_standard_atmosphere
+
 if ($analytic == "T") then
-  echo "ncdata = '$srcloc/$src/components/cam/scripts/Mars_ne16_ne16_mg17_L49.cam.i.0001-04-01-00000.nc'" >> user_nl_cam
+  echo "ncdata = '$srcloc/$src/mars/scripts/init.HS.no-topo.nc'" >> user_nl_cam
   echo "analytic_ic_type='us_standard_atmosphere'" >> user_nl_cam
   echo "se_nsplit = 100"
   echo "se_rsplit = 1"  >> user_nl_cam
@@ -91,13 +91,13 @@ echo "fincl2 = 'PS','U','V','T','OMEGA'" >> user_nl_cam
 
 
 #
-# set physical constants
+# set physical constants - not necessary: set with FMARSHS94 comset
 #
-echo "gravit = 3.72"      >> user_nl_cam
-echo "sday   = 88642.0"   >> user_nl_cam
-echo "mwdry  = 43.34"     >> user_nl_cam #0.04334 - original value
-echo "cpair  = 735.0"     >> user_nl_cam
-echo "rearth = 3.38992e6" >> user_nl_cam
+#echo "gravit = 3.72"      >> user_nl_cam
+#echo "sday   = 88642.0"   >> user_nl_cam
+#echo "mwdry  = 43.34"     >> user_nl_cam #0.04334 - original value
+#echo "cpair  = 735.0"     >> user_nl_cam
+#echo "rearth = 3.38992e6" >> user_nl_cam
 
 # qcmd -- ./case.build
 # ./case.submit
