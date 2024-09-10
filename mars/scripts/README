@@ -1,0 +1,19 @@
+IMPORTANT NOTES
+
+- frictional heating in sponge (with increased sponge layer damping)
+  drove temperature over 1000K; turned off del2 frictional heating
+- also turned off frictional heating for del4 (otherwise get max
+  temps of 1000K+)
+
+- trial and error stable time-stepping:
+
+se_nsplit = 8
+se_rsplit = 4
+se_hypervis_subcycle           = 10
+se_hypervis_subcycle_q         = 1
+se_nu_top = 1E6
+se_sponge_del4_nu_fac     =  5.0
+se_sponge_del4_nu_div_fac =  7.5
+se_sponge_del4_lev        = 5
+
+ncdata='CESM-planets/mars/scripts/init.HS.no-topo.nc'
