@@ -6,8 +6,9 @@ set res=ne16_ne16_mg17
 #
 # source code (assumed to be in /glade/u/home/$USER/src) --> BPM changed
 set home=/glade/u/home
-set srcloc=/glade/work/$USER/MARS
-set src="cam-mars"
+#set srcloc=/glade/work/$USER/MARS
+set srcloc=/glade/derecho/scratch/pel/
+set src="CESM-planets"
 if ($short == "T") then
   set stopoption="ndays"
   set steps="1"
@@ -20,15 +21,14 @@ else
   set caze=Mars_${res}_L49
 endif
 set cset="FHS94"
-set pecount="4"
-set queue="regular"
+set pecount="225"
+#set queue="regular"
 set PBS_ACCOUNT="P93300642"
 echo $PBS_ACCOUNT
-# set scratch="/glade/scratch"
-set scratch=$home/$USER/scratch/
+set scratch=/glade/derecho/scratch
+#--q $queue
 
-
-$srcloc/$src/cime/scripts/create_newcase --case $scratch/$USER/$caze --compset $cset --res $res  --q $queue --walltime $wall --pecount $pecount  --project $PBS_ACCOUNT --run-unsupported
+$srcloc/$src/cime/scripts/create_newcase --case $scratch/$USER/$caze --compset $cset --res $res   --walltime $wall --pecount $pecount  --project $PBS_ACCOUNT --run-unsupported
 
 cd $scratch/$USER/$caze
 ./xmlchange STOP_OPTION=$stopoption,STOP_N=$steps
@@ -58,7 +58,7 @@ echo "interpolate_nlon   = 144,144,144"             >> user_nl_cam
 echo "empty_htapes       = .true." >> user_nl_cam
 #held_suarez_1994,moist_baroclinic_wave_dcmip2016,dry_baroclinic_wave_dcmip2016,dry_baroclinic_wave_jw2006,us_standard_atmosphere
 if ($analytic == "T") then
-  echo "ncdata = '/home/user/cam-mars/scripts/Mars_ne16_ne16_mg17_L49.cam.i.0001-04-01-00000.nc'" >> user_nl_cam
+  echo "ncdata = '$srcloc/$src/components/cam/scripts/Mars_ne16_ne16_mg17_L49.cam.i.0001-04-01-00000.nc'" >> user_nl_cam
   echo "analytic_ic_type='us_standard_atmosphere'" >> user_nl_cam
   echo "se_nsplit = 100"
   echo "se_rsplit = 1"  >> user_nl_cam
@@ -68,19 +68,21 @@ else
   #
   # spun-up Held-Suarez initial condition
   #
-  echo "ncdata = '/glade/u/home/pel/src/cam-mars/scripts/FHS94_ne16_ne16_mg17.cam.i.0002-10-01-00000.nc'" >> user_nl_cam
+  echo "ncdata = '$srcloc/$src/mars/scripts/init.HS.no-topo.nc'" >> user_nl_cam
 #
 # time-steps have not been optimized for Mars at this point
 #
   echo "se_nsplit = 8" >> user_nl_cam
   echo "se_rsplit = 4"  >> user_nl_cam
-  echo "se_hypervis_subcycle           = 8" >> user_nl_cam
+  echo "se_hypervis_subcycle           = 10" >> user_nl_cam
   echo "se_hypervis_subcycle_q         = 1" >> user_nl_cam
-#echo "se_nsplit = 6" >> user_nl_cam
+  echo "se_nu_top = 1E6" >> user_nl_cam
+  echo "se_sponge_del4_nu_fac     =  5.0" >> user_nl_cam
+  echo "se_sponge_del4_nu_div_fac =  7.5" >> user_nl_cam
+  echo "se_sponge_del4_lev        = 5" >> user_nl_cam
+
+  
 endif
-#echo "analytic_ic_type='dry_baroclinic_wave_dcmip2016'"  >> user_nl_cam
-
-
 
 echo "mfilt = 144" >> user_nl_cam
 echo "avgflag_pertape(1) = 'I'" >> user_nl_cam
