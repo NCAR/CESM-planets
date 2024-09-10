@@ -7,7 +7,7 @@ git clone https://github.com/NCAR/CESM-planets CESM-planets
 cd CESM-planets
 git checkout planets_dev
 ./manage_externals/checkout_externals 
-cd scripts
+cd components/cam/scripts/
 tcsh
 source held_suarez_mars.sh
 exit
